@@ -1,0 +1,1899 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Egarda Kurniawan — Portfolio Mockup</title>
+  <style>
+    :root {
+      --bg: #090909;
+      --panel: #111111;
+      --panel-2: #0d0d0d;
+      --text: #f1efe8;
+      --muted: #a7a39a;
+      --line: #30302d;
+      --accent: #c8ff1a;
+      --accent-soft: #98b90d;
+      --max: 1440px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* =========================================
+      NAVBAR
+       ========================================= */
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      width: 100%;
+      height: 56px;
+      border-bottom: 1px solid rgba(255, 255, 255, .12);
+      background: rgba(9, 9, 9, .96);
+      backdrop-filter: blur(10px);
+      transition: background-color .25s ease;
+    }
+
+    .nav-inner {
+      position: relative;
+      width: min(100%, var(--max));
+      height: 56px;
+      margin: 0 auto;
+      padding: 0 28px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .nav-panel {
+      position: fixed;
+      top: 56px;
+      right: 0;
+      z-index: 90;
+      width: 190px;
+      min-height: 230px;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-right: 0;
+      background: rgba(9, 9, 9, .94);
+      backdrop-filter: blur(10px);
+      transform: translateX(calc(100% - 34px));
+      transition: transform .3s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .nav-panel:hover,
+    .nav-panel:focus-within {
+      transform: translateX(0);
+    }
+
+    .nav-panel-handle {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 34px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 22px;
+      font-weight: 900;
+      border-right: 1px solid var(--line);
+      pointer-events: none;
+    }
+
+    .nav-panel .nav-list {
+      margin-left: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      font-size: clamp(18px, 1.45vw, 24px);
+      font-weight: 700;
+      line-height: 1.08;
+    }
+
+    .brand {
+      position: relative;
+      z-index: 2;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: .06em;
+      line-height: 1;
+      padding-top: 3px;
+    }
+
+    .nav-link {
+      position: relative;
+      display: block;
+      padding-left: 0;
+      transition: padding-left .2s ease, color .2s ease;
+    }
+
+    .nav-link::before {
+      content: '›';
+      position: absolute;
+      left: -14px;
+      opacity: 0;
+      color: var(--accent);
+      transition: opacity .2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      padding-left: 14px;
+      color: var(--accent);
+    }
+
+    .nav-link:hover::before,
+    .nav-link.active::before {
+      opacity: 1;
+    }
+
+    main,
+    section {
+      width: 100%;
+    }
+
+    .hero {
+      min-height: calc(100vh - 77px);
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      padding: 30px 28px 26px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.65fr) minmax(290px, .78fr);
+      gap: 52px;
+      align-items: end;
+      scroll-margin-top: 80px;
+    }
+
+    .hero-eyebrow,
+    .section-kicker,
+    .stat-label,
+    .meta,
+    .tag,
+    .ticker-track,
+    .archive-label {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    .hero-eyebrow {
+      font-size: 20px;
+      letter-spacing: .18em;
+      font-weight: 800;
+      color: #d8d0c2;
+      margin-bottom: 26px;
+      text-transform: uppercase;
+    }
+
+    .hero-name {
+      margin: 0;
+      font-size: clamp(80px, 9.2vw, 160px);
+      line-height: .8;
+      letter-spacing: -.075em;
+      text-transform: uppercase;
+      font-weight: 900;
+      max-width: 780px;
+    }
+
+    .hero-name span {
+      color: var(--accent);
+      display: block;
+    }
+
+    .hero-interests {
+      margin: 48px 0 50px;
+      max-width: 960px;
+      font-size: clamp(24px, 2.1vw, 38px);
+      line-height: 1.28;
+      letter-spacing: -.025em;
+      color: #dedbd4;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .btn {
+      position: relative;
+      transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        background-color .18s ease,
+        color .18s ease;
+      border: 1px solid #bdb8ad;
+      min-height: 58px;
+      padding: 0 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0b0b0b;
+      border-color: var(--accent);
+    }
+
+    .btn-secondary {
+      background: transparent;
+    }
+
+    .btn:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 5px 5px 0 #f1efe8;
+    }
+
+    .btn-primary:hover {
+      background: #d7ff45;
+      color: #090909;
+      box-shadow: 5px 5px 0 #f1efe8;
+    }
+
+    .btn-secondary:hover {
+      background: var(--accent);
+      color: #090909;
+      border-color: var(--accent);
+      box-shadow: 5px 5px 0 #f1efe8;
+    }
+
+    .hero-side {
+      align-self: end;
+      border: 1px solid var(--line);
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, rgba(255, 255, 255, .025), rgba(255, 255, 255, 0));
+    }
+
+    .hero-side-mark {
+      color: var(--accent);
+      text-align: center;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-weight: 900;
+      line-height: .9;
+      font-size: clamp(100px, 12vw, 190px);
+    }
+
+    .hero-side-mark .slashes {
+      display: block;
+      font-size: .9em;
+    }
+
+    .hero-side-mark .index {
+      display: block;
+      margin-top: 24px;
+    }
+
+    .stats {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat {
+      min-height: 220px;
+      padding: 46px 28px;
+      border-right: 1px solid var(--line);
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat-value {
+      font-size: clamp(62px, 6.6vw, 108px);
+      font-weight: 900;
+      line-height: .9;
+      letter-spacing: -.06em;
+      margin-bottom: 34px;
+    }
+
+    .stat-label {
+      color: #c0baae;
+      font-size: 13px;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .ticker {
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background: #0c0c0c;
+      white-space: nowrap;
+    }
+
+    .ticker-track {
+      width: max-content;
+      display: flex;
+      gap: 30px;
+      padding: 20px 0;
+      animation: marquee 28s linear infinite;
+      color: #c9c6be;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .ticker-item::after {
+      content: '—';
+      color: var(--accent);
+      margin-left: 30px;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .section {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      padding: 120px 28px;
+      scroll-margin-top: 90px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 32px;
+      align-items: end;
+      margin-bottom: 70px;
+    }
+
+    .section-number {
+      color: var(--accent);
+      font: 900 16px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(54px, 7vw, 108px);
+      line-height: .86;
+      letter-spacing: -.07em;
+      text-transform: uppercase;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 56px;
+    }
+
+    .about-copy {
+      font-size: 22px;
+      line-height: 1.55;
+      color: #d0cdc5;
+      max-width: 760px;
+    }
+
+    .data-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .data-row {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 18px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .data-row .meta {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .projects {
+      border-top: 1px solid var(--line);
+    }
+
+    .project {
+      padding: 34px 0 46px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .project-top {
+      display: grid;
+      grid-template-columns: 90px 1fr auto;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .project-no {
+      font: 900 26px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color: var(--accent);
+    }
+
+    .project-title {
+      margin: 0;
+      font-size: clamp(34px, 4.2vw, 68px);
+      line-height: .95;
+      letter-spacing: -.05em;
+    }
+
+    .project-year {
+      font: 800 13px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color: var(--muted);
+    }
+
+    .project-desc {
+      margin: 24px 0 22px 114px;
+      max-width: 840px;
+      color: #c4c1b9;
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .tags {
+      margin-left: 114px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      padding: 9px 11px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .project-link {
+      display: inline-block;
+      margin: 22px 0 0 114px;
+      font: 800 12px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      letter-spacing: .04em;
+      color: var(--accent);
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+      text-underline-offset: 5px;
+    }
+
+    .certificate-carousel {
+      display: flex;
+      gap: 22px;
+      overflow-x: auto;
+      padding: 4px 2px 18px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) var(--panel);
+      cursor: grab;
+    }
+
+    .certificate-carousel:active {
+      cursor: grabbing;
+    }
+
+    .certificate-card {
+      flex: 0 0 clamp(260px, 31vw, 420px);
+      aspect-ratio: 4 / 3;
+      scroll-snap-align: start;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, 0));
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: transform .2s ease, border-color .2s ease;
+    }
+
+    .certificate-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .certificate-index {
+      color: var(--accent);
+      font: 900 14px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    .certificate-placeholder {
+      font: 900 clamp(28px, 3.3vw, 48px)/.9 Arial, Helvetica, sans-serif;
+      letter-spacing: -.045em;
+      color: #77736b;
+    }
+
+    .certificate-meta {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font: 800 10px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    .carousel-hint {
+      margin-top: 18px;
+      color: var(--muted);
+      font: 800 11px/1.2 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      text-align: right;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .skill-group {
+      padding: 26px;
+      min-height: 220px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .skill-group h3 {
+      margin: 0 0 22px;
+      font: 800 13px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .skill-group p {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.65;
+      color: #d7d3ca;
+    }
+
+    .contact {
+      border-top: 1px solid var(--line);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 50px;
+    }
+
+    .contact-big {
+      font-size: clamp(46px, 6vw, 92px);
+      line-height: .92;
+      letter-spacing: -.065em;
+      text-transform: uppercase;
+      max-width: 800px;
+    }
+
+    .contact-links {
+      border-top: 1px solid var(--line);
+    }
+
+    .contact-link {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    .contact-link span:last-child {
+      color: var(--accent);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      padding: 24px 28px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      font: 800 11px/1.2 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 70px;
+      }
+
+      .hero-side {
+        min-height: 260px;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-link {
+        display: inline-block;
+        margin: 22px 0 0 114px;
+        font: 800 12px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        letter-spacing: .04em;
+        color: var(--accent);
+      }
+
+      .project-link:hover {
+        text-decoration: underline;
+        text-underline-offset: 5px;
+      }
+
+      .certificate-carousel {
+        display: flex;
+        gap: 22px;
+        overflow-x: auto;
+        padding: 4px 2px 18px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+        scrollbar-color: var(--accent) var(--panel);
+        cursor: grab;
+      }
+
+      .certificate-carousel:active {
+        cursor: grabbing;
+      }
+
+      .certificate-card {
+        flex: 0 0 clamp(260px, 31vw, 420px);
+        aspect-ratio: 4 / 3;
+        scroll-snap-align: start;
+        border: 1px solid var(--line);
+        background: linear-gradient(145deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, 0));
+        padding: 22px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        transition: transform .2s ease, border-color .2s ease;
+      }
+
+      .certificate-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--accent);
+      }
+
+      .certificate-index {
+        color: var(--accent);
+        font: 900 14px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+
+      .certificate-placeholder {
+        font: 900 clamp(28px, 3.3vw, 48px)/.9 Arial, Helvetica, sans-serif;
+        letter-spacing: -.045em;
+        color: #77736b;
+      }
+
+      .certificate-meta {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font: 800 10px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+
+      .carousel-hint {
+        margin-top: 18px;
+        color: var(--muted);
+        font: 800 11px/1.2 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        text-align: right;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .site-nav {
+        height: 56px;
+      }
+
+      .nav-inner {
+        height: 56px;
+        padding: 14px 18px;
+      }
+
+      .nav-panel {
+        top: 64px;
+        width: 170px;
+        min-height: 210px;
+        padding: 18px 18px;
+      }
+
+      .nav-panel-handle {
+        width: 30px;
+      }
+
+      .nav-panel .nav-list {
+        margin-left: 24px;
+      }
+
+      .hero,
+      .section,
+      .footer-inner {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .hero-name {
+        font-size: clamp(68px, 20vw, 110px);
+      }
+
+      .hero-interests {
+        font-size: 21px;
+        margin-top: 34px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        min-height: 150px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .stat:last-child {
+        border-bottom: 0;
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .project-top {
+        grid-template-columns: 54px 1fr;
+      }
+
+      .project-year {
+        grid-column: 2;
+      }
+
+      .project-desc,
+      .tags,
+      .project-link {
+        margin-left: 78px;
+      }
+
+      .certificate-card {
+        flex-basis: 78vw;
+      }
+
+      .project-link {
+        display: inline-block;
+        margin: 22px 0 0 114px;
+        font: 800 12px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        letter-spacing: .04em;
+        color: var(--accent);
+      }
+
+      .project-link:hover {
+        text-decoration: underline;
+        text-underline-offset: 5px;
+      }
+
+      .certificate-carousel {
+        display: flex;
+        gap: 22px;
+        overflow-x: auto;
+        padding: 4px 2px 18px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+        scrollbar-color: var(--accent) var(--panel);
+        cursor: grab;
+      }
+
+      .certificate-carousel:active {
+        cursor: grabbing;
+      }
+
+      .certificate-card {
+        flex: 0 0 clamp(260px, 31vw, 420px);
+        aspect-ratio: 4 / 3;
+        scroll-snap-align: start;
+        border: 1px solid var(--line);
+        background: linear-gradient(145deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, 0));
+        padding: 22px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        transition: transform .2s ease, border-color .2s ease;
+      }
+
+      .certificate-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--accent);
+      }
+
+      .certificate-index {
+        color: var(--accent);
+        font: 900 14px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+
+      .certificate-placeholder {
+        font: 900 clamp(28px, 3.3vw, 48px)/.9 Arial, Helvetica, sans-serif;
+        letter-spacing: -.045em;
+        color: #77736b;
+      }
+
+      .certificate-meta {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font: 800 10px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+
+      .carousel-hint {
+        margin-top: 18px;
+        color: var(--muted);
+        font: 800 11px/1.2 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        text-align: right;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+
+
+    /* =========================================
+       PROJECT MEDIA DISPLAY
+       ========================================= */
+
+    .project-media-trigger {
+      display: inline-block;
+      margin: 18px 0 0 114px;
+      font: 800 12px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      letter-spacing: .04em;
+      color: var(--accent);
+      background: none;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .project-media-trigger:hover {
+      text-decoration: underline;
+      text-underline-offset: 5px;
+    }
+
+    .media-modal,
+    .certificate-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      background: rgba(0, 0, 0, .86);
+      backdrop-filter: blur(10px);
+    }
+
+    .media-modal.is-open,
+    .certificate-modal.is-open {
+      display: flex;
+    }
+
+    .media-dialog,
+    .certificate-dialog {
+      position: relative;
+      width: min(1180px, 94vw);
+      max-height: 92vh;
+      border: 1px solid var(--line);
+      background: #080808;
+      box-shadow: 0 30px 100px rgba(0, 0, 0, .6);
+      overflow: hidden;
+    }
+
+    .media-header,
+    .certificate-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(17, 17, 17, .96);
+    }
+
+    .media-title,
+    .certificate-title {
+      margin: 0;
+      font: 900 13px/1.2 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .modal-close {
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--text);
+      min-width: 36px;
+      height: 36px;
+      cursor: pointer;
+      font: 900 18px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    .modal-close:hover {
+      color: #090909;
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .media-screen {
+      position: relative;
+      min-height: min(68vh, 680px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .03), transparent 45%),
+        #050505;
+      overflow: hidden;
+    }
+
+    .media-stage {
+      width: 100%;
+      height: 100%;
+      min-height: min(68vh, 680px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 34px 90px;
+    }
+
+    .media-stage img,
+    .media-stage video {
+      max-width: 100%;
+      max-height: min(62vh, 620px);
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border: 1px solid var(--line);
+      background: #090909;
+    }
+
+    .media-stage video {
+      width: min(100%, 1060px);
+    }
+
+    .media-empty {
+      text-align: center;
+      color: var(--muted);
+      font: 800 12px/1.5 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      max-width: 460px;
+    }
+
+    .media-empty strong {
+      display: block;
+      color: var(--accent);
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .media-hit-zone {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 18%;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      z-index: 4;
+    }
+
+    .media-hit-zone.left {
+      left: 0;
+    }
+
+    .media-hit-zone.right {
+      right: 0;
+    }
+
+    .media-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 80px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(200, 255, 26, .35);
+      background: rgba(9, 9, 9, .62);
+      color: var(--accent);
+      font: 900 30px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      opacity: .82;
+      pointer-events: none;
+      transition: opacity .2s ease, background .2s ease;
+    }
+
+    .media-hit-zone:hover .media-arrow {
+      opacity: 1;
+      background: rgba(200, 255, 26, .1);
+    }
+
+    .media-hit-zone.left .media-arrow {
+      left: 18px;
+    }
+
+    .media-hit-zone.right .media-arrow {
+      right: 18px;
+    }
+
+    .media-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 20px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font: 800 10px/1.2 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      text-transform: uppercase;
+    }
+
+    .certificate-card {
+      cursor: zoom-in;
+      text-align: left;
+      border: 1px solid var(--line);
+    }
+
+    .certificate-preview {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      display: block;
+      border: 1px solid var(--line);
+      background: #090909;
+    }
+
+    .certificate-name {
+      margin-top: 14px;
+      font-size: 18px;
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      color: var(--text);
+    }
+
+    .certificate-year {
+      margin-top: 8px;
+      color: var(--accent);
+      font: 800 11px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      text-transform: uppercase;
+    }
+
+    .certificate-full-image {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      max-height: 72vh;
+      margin: 0 auto;
+      object-fit: contain;
+      background: #070707;
+    }
+
+    .certificate-modal-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 24px;
+      padding: 16px 20px;
+      border-top: 1px solid var(--line);
+      background: rgba(17, 17, 17, .98);
+    }
+
+    .certificate-modal-name {
+      font-size: clamp(18px, 2vw, 28px);
+      font-weight: 900;
+      letter-spacing: -.04em;
+    }
+
+    .certificate-modal-year {
+      color: var(--accent);
+      font: 900 12px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    @media (max-width: 680px) {
+      .project-media-trigger {
+        margin-left: 78px;
+      }
+
+      .media-modal,
+      .certificate-modal {
+        padding: 10px;
+      }
+
+      .media-dialog,
+      .certificate-dialog {
+        width: 100%;
+        max-height: 94vh;
+      }
+
+      .media-stage {
+        min-height: 54vh;
+        padding: 20px 52px;
+      }
+
+      .media-screen {
+        min-height: 54vh;
+      }
+
+      .media-stage img,
+      .media-stage video {
+        max-height: 48vh;
+      }
+
+      .media-arrow {
+        width: 38px;
+        height: 66px;
+        font-size: 24px;
+      }
+
+      .media-hit-zone.left .media-arrow {
+        left: 8px;
+      }
+
+      .media-hit-zone.right .media-arrow {
+        right: 8px;
+      }
+
+      .certificate-modal-info {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a class="brand" href="#home">EK</a>
+    </div>
+  </nav>
+
+  <aside class="nav-panel" aria-label="Primary navigation">
+    <div class="nav-panel-handle">›</div>
+    <div class="nav-list">
+      <a class="nav-link active" href="#home">Home</a>
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="#projects">Project</a>
+      <a class="nav-link" href="#certificates">Certificates</a>
+      <a class="nav-link" href="#skills">Skills</a>
+      <a class="nav-link" href="#contact">Contact</a>
+    </div>
+  </aside>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-main">
+        <div class="hero-eyebrow">Computer Engineering Student</div>
+        <h1 class="hero-name">Egarda<span>Kurniawan</span></h1>
+        <p class="hero-interests">Artificial Intelligence × Data Analytics × Machine Learning × Software Development</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects">View Projects →</a>
+          <a class="btn btn-secondary" href="#contact">Get In Touch</a>
+        </div>
+      </div>
+
+      <div class="hero-side" aria-label="Decorative placeholder">
+        <div class="hero-side-mark"><span class="slashes">//</span><span class="index">01</span></div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Portfolio statistics">
+      <div class="stat">
+        <div class="stat-value">09</div>
+        <div class="stat-label">Projects Handled</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">00</div>
+        <div class="stat-label">Certificate Acquired</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">3.52</div>
+        <div class="stat-label">Latest GPA</div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-label="Interest ticker">
+      <div class="ticker-track">
+        <span class="ticker-item">Artificial Intelligence</span>
+        <span class="ticker-item">Data Analytics</span>
+        <span class="ticker-item">Machine Learning</span>
+        <span class="ticker-item">Software Development</span>
+        <span class="ticker-item">Internet of Things</span>
+        <span class="ticker-item">Embedded Systems</span>
+        <span class="ticker-item">Networking</span>
+        <span class="ticker-item">Artificial Intelligence</span>
+        <span class="ticker-item">Data Analytics</span>
+        <span class="ticker-item">Machine Learning</span>
+        <span class="ticker-item">Software Development</span>
+        <span class="ticker-item">Internet of Things</span>
+        <span class="ticker-item">Embedded Systems</span>
+        <span class="ticker-item">Networking</span>
+      </div>
+    </div>
+
+    <section id="about" class="section">
+      <div class="section-head">
+        <div class="section-number">01 / PROFILE</div>
+        <h2 class="section-title">About Me</h2>
+      </div>
+      <div class="about-grid">
+        <p class="about-copy">I am highly motivated to grow and am particularly interested in the real-world
+          implementation of artificial intelligence. I look forward to opportunities to further develop my skills
+          through collaboration, projects, and professional experience, and I am committed to contributing to the
+          creation of ideal, efficient, and innovative technology solutions.</p>
+        <div class="data-list">
+          <div class="data-row">
+            <div class="meta">Focus</div>
+            <div>AI / Data / Software / IoT</div>
+          </div>
+          <div class="data-row">
+            <div class="meta">Education</div>
+            <div>Computer Engineering</div>
+          </div>
+          <div class="data-row">
+            <div class="meta">Status</div>
+            <div>Student / Project Builder</div>
+          </div>
+          <div class="data-row">
+            <div class="meta">Location</div>
+            <div>Indonesia</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section projects">
+      <div class="section-head">
+        <div class="section-number">02 / ARCHIVE</div>
+        <h2 class="section-title">Projects</h2>
+      </div>
+
+      <article class="project">
+        <div class="project-top">
+          <div class="project-no">01</div>
+          <h3 class="project-title">GoodHealth</h3>
+          <div class="project-year">2025</div>
+        </div>
+        <p class="project-desc">Android app prototype for a healthcare management application with administrator and
+          patient sides, appointment and prescription management, medical record handling, MySQL through ODBC, SHA-256
+          authentication, and input handling intended to reduce SQL Injection risk.</p>
+        <div class="tags"><span class="tag">C++</span><span class="tag">DART</span><span class="tag">PHP</span><span
+            class="tag">MFC</span><span class="tag">MYSQL</span><span class="tag">ODBC</span><span
+            class="tag">SHA-256</span></div><a class="project-link"
+          href="https://github.com/Egard06/goodhealth-example-app" target="_blank" rel="noopener">GITHUB →</a>
+        <button class="project-media-trigger" type="button" data-project-id="01">VIEW MEDIA →</button>
+      </article>
+
+      <article class="project">
+        <div class="project-top">
+          <div class="project-no">02</div>
+          <h3 class="project-title">Conflux</h3>
+          <div class="project-year">SEM 3</div>
+        </div>
+        <p class="project-desc">Android productivity-management application for students. The back-end was developed in
+          pure Java using MVVM with task automation, focus timer, local file management, deadline notifications,
+          auto-login, and bottom navigation.</p>
+        <div class="tags"><span class="tag">JAVA</span><span class="tag">ANDROID</span><span
+            class="tag">MVVM</span><span class="tag">ROOM</span><span class="tag">WORKMANAGER</span></div><a
+          class="project-link" href="https://github.com/Egard06/conflux-app" target="_blank" rel="noopener">GITHUB →</a>
+        <button class="project-media-trigger" type="button" data-project-id="02">VIEW MEDIA →</button>
+      </article>
+
+      <article class="project">
+        <div class="project-top">
+          <div class="project-no">03</div>
+          <h3 class="project-title">Curiosity</h3>
+          <div class="project-year">SEM 3</div>
+        </div>
+        <p class="project-desc">Android Random Fun Fact application that retrieves random article metadata from the
+          Wikipedia API, including article content and images, with loading and network handling.</p>
+        <div class="tags"><span class="tag">ANDROID</span><span class="tag">JAVA / KOTLIN</span><span
+            class="tag">WIKIPEDIA API</span><span class="tag">GRADLE</span></div><a class="project-link"
+          href="https://github.com/Egard06/curiosity-app" target="_blank" rel="noopener">GITHUB →</a>
+        <button class="project-media-trigger" type="button" data-project-id="03">VIEW MEDIA →</button>
+      </article>
+
+      <article class="project">
+        <div class="project-top">
+          <div class="project-no">04</div>
+          <h3 class="project-title">Kerjain</h3>
+          <div class="project-year">SEM 3</div>
+        </div>
+        <p class="project-desc">Cross-platform To-Do List application for Android developed with Flutter and Dart,
+          including personalized UI/UX, state management, simple CRUD, custom data model, swipe-to-delete, and
+          interactive completion controls.</p>
+        <div class="tags"><span class="tag">FLUTTER</span><span class="tag">DART</span><span
+            class="tag">CRUD</span><span class="tag">MATERIAL DESIGN</span></div><a class="project-link"
+          href="https://github.com/Egard06/kerjain-app" target="_blank" rel="noopener">GITHUB →</a>
+        <button class="project-media-trigger" type="button" data-project-id="04">VIEW MEDIA →</button>
+      </article>
+
+      <article class="project">
+        <div class="project-top">
+          <div class="project-no">05</div>
+          <h3 class="project-title">Otak-Atik Merah Putih</h3>
+          <div class="project-year">2026</div>
+        </div>
+        <p class="project-desc">Educational game project developed by a team. Worked in the Mobile Based Application
+          division on mobile adaptation from the PC prototype, back-end functionality, and testing before the project
+          demonstration.</p>
+        <div class="tags"><span class="tag">MOBILE</span><span class="tag">BACK END</span><span
+            class="tag">TESTING</span><span class="tag">TEAM PROJECT</span></div>
+        <button class="project-media-trigger" type="button" data-project-id="05">VIEW MEDIA →</button>
+      </article>
+
+      <article class="project">
+        <div class="project-top">
+          <div class="project-no">06</div>
+          <h3 class="project-title">Signal, Audio &amp; Image Processing</h3>
+          <div class="project-year">SEM 4</div>
+        </div>
+        <p class="project-desc">Modular Python development covering convolution, Fourier/FFT, DCT, filtering, and
+          processing of signal, audio, image, and video data, including integration and testing across data types.</p>
+        <div class="tags"><span class="tag">PYTHON</span><span class="tag">FFT</span><span class="tag">DCT</span><span
+            class="tag">CONVOLUTION</span><span class="tag">OPENCV</span></div>
+        <!--<button class="project-media-trigger" type="button" data-project-id="06">VIEW MEDIA →</button>-->
+      </article>
+
+      <article class="project">
+        <div class="project-top">
+          <div class="project-no">07</div>
+          <h3 class="project-title">Machine Learning / Computer Vision</h3>
+          <div class="project-year">SEM 4</div>
+        </div>
+        <p class="project-desc">Image-classification experiments using TensorFlow/Keras with vehicle, Fashion, Sign
+          Language MNIST, and Cats vs Dogs datasets. Approaches include CNN and transfer learning with VGG16 and
+          MobileNetV2.</p>
+        <div class="tags"><span class="tag">PYTHON</span><span class="tag">TENSORFLOW</span><span
+            class="tag">KERAS</span><span class="tag">VGG16</span><span class="tag">MOBILENETV2</span></div>
+        <!-- <button class="project-media-trigger" type="button" data-project-id="07">VIEW MEDIA →</button> -->
+      </article>
+
+      <article class="project">
+        <div class="project-top">
+          <div class="project-no">08</div>
+          <h3 class="project-title">SDN Network Environment</h3>
+          <div class="project-year">SEM 4</div>
+        </div>
+        <p class="project-desc">Software Defined Networking environment integrating GNS3, Open vSwitch, and ONOS for
+          topology construction, flow control, forwarding experiments, and SSH/Telnet traffic analysis with Wireshark.
+        </p>
+        <div class="tags"><span class="tag">GNS3</span><span class="tag">OVS</span><span class="tag">ONOS</span><span
+            class="tag">PYTHON</span><span class="tag">WIRESHARK</span></div>
+        <!-- <button class="project-media-trigger" type="button" data-project-id="08">VIEW MEDIA →</button> -->
+      </article>
+
+      <article class="project">
+        <div class="project-top">
+          <div class="project-no">09</div>
+          <h3 class="project-title">Web Application Repositories</h3>
+          <div class="project-year">GITHUB</div>
+        </div>
+        <p class="project-desc">Additional public repositories in the Egard06 GitHub account include a public-complaint
+          web prototype, cashier web application, library web application, and a GoodHealth example application. They
+          remain grouped here until their individual project descriptions are finalized.</p>
+        <div class="tags"><span class="tag">WEB</span><span class="tag">PHP / JS</span><span
+            class="tag">DATABASE</span><span class="tag">GITHUB</span></div><a class="project-link"
+          href="https://github.com/Egard06?tab=repositories" target="_blank" rel="noopener">VIEW REPOSITORIES →</a>
+        <!-- <button class="project-media-trigger" type="button" data-project-id="09">VIEW MEDIA →</button> -->
+      </article>
+    </section>
+
+    <section id="certificates" class="section certificates">
+      <div class="section-head">
+        <div class="section-number">03 / RECORDS</div>
+        <h2 class="section-title">Certificates</h2>
+      </div>
+      <div class="certificate-carousel" tabindex="0" aria-label="Certificate carousel">
+        <!--
+          Tambahkan certificate baru dengan menyalin satu .certificate-card.
+          data-filled="true" = sertifikat dihitung ke counter Hero.
+          data-image     = file gambar sertifikat ukuran penuh.
+          data-name      = nama sertifikat.
+          data-year      = tahun terbit.
+          data-preview   = thumbnail; boleh sama dengan data-image.
+        -->
+        <button class="certificate-card" type="button" data-filled="true"
+          data-image="assets/certificates/certificate-01.jpg" data-preview="assets/certificates/certificate-01.jpg"
+          data-name="Pelatihan Pengenalan Data Science dan Pemanfaatannya di Berbagai Sektor" data-year="2026">
+          <div class="certificate-index">01</div>
+          <img class="certificate-preview" src="assets/certificates/certificate-01.jpg" alt="Certificate 01 preview">
+          <div class="certificate-name">Pelatihan Pengenalan Data Science dan Pemanfaatannya di Berbagai Sektor</div>
+          <div class="certificate-year">2026</div>
+          <div class="certificate-meta"><span>ARCHIVE</span><span>IMAGE</span></div>
+        </button>
+
+        <button class="certificate-card" type="button" data-filled="true"
+          data-image="assets/certificates/certificate-02.jpg" data-preview="assets/certificates/certificate-02.jpg"
+          data-name="Workshop Generative AI Mastermind" data-year="2026">
+          <div class="certificate-index">02</div>
+          <img class="certificate-preview" src="assets/certificates/certificate-02.jpg" alt="Certificate 02 preview">
+          <div class="certificate-name">Workshop Generative AI Mastermind</div>
+          <div class="certificate-year">2026</div>
+          <div class="certificate-meta"><span>ARCHIVE</span><span>IMAGE</span></div>
+        </button>
+
+        <button class="certificate-card" type="button" data-filled="true"
+          data-image="assets/certificates/certificate-03.png" data-preview="assets/certificates/certificate-03.png"
+          data-name="Webinar Sekolah Pasar Modal Level 1" data-year="2026">
+          <div class="certificate-index">03</div>
+          <img class="certificate-preview" src="assets/certificates/certificate-03.png" alt="Certificate 03 preview">
+          <div class="certificate-name">Webinar Sekolah Pasar Modal Level 1</div>
+          <div class="certificate-year">2026</div>
+          <div class="certificate-meta"><span>ARCHIVE</span><span>IMAGE</span></div>
+        </button>
+
+        <button class="certificate-card" type="button" data-filled="true"
+          data-image="assets/certificates/certificate-04.jpg" data-preview="assets/certificates/certificate-04.jpg"
+          data-name="Webinar Cracking the HR Code" data-year="2026">
+          <div class="certificate-index">04</div>
+          <img class="certificate-preview" src="assets/certificates/certificate-04.jpg" alt="Certificate 04 preview">
+          <div class="certificate-name">Webinar Cracking the HR Code</div>
+          <div class="certificate-year">2026</div>
+          <div class="certificate-meta"><span>ARCHIVE</span><span>IMAGE</span></div>
+        </button>
+
+        <button class="certificate-card" type="button" data-filled="true"
+          data-image="assets/certificates/certificate-05.png" data-preview="assets/certificates/certificate-05.png"
+          data-name="Webinar AI Career Toolkit 2026" data-year="2026">
+          <div class="certificate-index">05</div>
+          <img class="certificate-preview" src="assets/certificates/certificate-05.png" alt="Certificate 05 preview">
+          <div class="certificate-name">Webinar AI Career Toolkit 2026</div>
+          <div class="certificate-year">2026</div>
+          <div class="certificate-meta"><span>ARCHIVE</span><span>IMAGE</span></div>
+        </button>
+
+        <button class="certificate-card" type="button" data-filled="false"
+          data-image="assets/certificates/certificate-06.png" data-preview="assets/certificates/certificate-06.png"
+          data-name="Coming Soon" data-year="2026">
+          <div class="certificate-index">06</div>
+          <img class="certificate-preview" src="assets/certificates/certificate-06.png" alt="Certificate 06 preview">
+          <div class="certificate-name">Coming Soon</div>
+          <div class="certificate-year">2026</div>
+          <div class="certificate-meta"><span>ARCHIVE</span><span>IMAGE</span></div>
+        </button>
+
+      </div>
+      <div class="carousel-hint">← DRAG / SHIFT + SCROLL → / CLICK CARD TO VIEW</div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="section-head">
+        <div class="section-number">04 / SYSTEMS</div>
+        <h2 class="section-title">Skills</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>Languages</h3>
+          <p>Python<br>C / C++<br>Java<br>VHDL<br>SQL</p>
+        </div>
+        <div class="skill-group">
+          <h3>Software</h3>
+          <p>OpenCV<br>Android Studio<br>GNS3<br>Wireshark<br>Git</p>
+        </div>
+        <div class="skill-group">
+          <h3>Domains</h3>
+          <p>AI / ML<br>Data Analytics<br>Software Development<br>IoT / Embedded</p>
+        </div>
+        <div class="skill-group">
+          <h3>Systems</h3>
+          <p>Networking<br>FPGA / Digital Systems<br>Database<br>Signal Processing</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div class="section-head">
+        <div class="section-number">05 / CONNECTION</div>
+        <h2 class="section-title">Contact</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-big">Let's connect and build together.</div>
+        <div class="contact-links">
+          <a class="contact-link"
+            href="mailto:egardkurniawan678@gmail.com"><span>Email</span><span>egardkurniawan678@gmail.com →</span></a>
+          <a class="contact-link" href="https://github.com/Egard06" target="_blank"
+            rel="noopener"><span>GitHub</span><span>Egard06 →</span></a>
+          <a class="contact-link" href="https://www.linkedin.com/in/egarda-kurniawan" target="_blank"
+            rel="noopener"><span>LinkedIn</span><span>Egarda Kurniawan →</span></a>
+          <a class="contact-link" href="tel:+6285348985254"><span>Phone</span><span>+62 853 48985254 →</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- =========================================
+        PROJECT MEDIA MODAL
+        ========================================= -->
+  <div class="media-modal" id="mediaModal" aria-hidden="true">
+    <div class="media-dialog" role="dialog" aria-modal="true" aria-labelledby="mediaTitle">
+      <div class="media-header">
+        <h3 class="media-title" id="mediaTitle">PROJECT MEDIA</h3>
+        <button class="modal-close" type="button" data-close-modal="mediaModal" aria-label="Close">×</button>
+      </div>
+
+      <div class="media-screen" id="mediaScreen">
+        <button class="media-hit-zone left" type="button" data-media-prev aria-label="Previous media">
+          <span class="media-arrow">‹</span>
+        </button>
+        <div class="media-stage" id="mediaStage"></div>
+        <button class="media-hit-zone right" type="button" data-media-next aria-label="Next media">
+          <span class="media-arrow">›</span>
+        </button>
+      </div>
+
+      <div class="media-footer">
+        <span id="mediaCounter">01 / 01</span>
+        <span id="mediaHint">CLICK LEFT / RIGHT SIDE TO NAVIGATE</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================
+         CERTIFICATE POPUP
+         ========================================= -->
+  <div class="certificate-modal" id="certificateModal" aria-hidden="true">
+    <div class="certificate-dialog" role="dialog" aria-modal="true" aria-labelledby="certificateModalTitle">
+      <div class="certificate-header">
+        <h3 class="certificate-title">CERTIFICATE ARCHIVE</h3>
+        <button class="modal-close" type="button" data-close-modal="certificateModal" aria-label="Close">×</button>
+      </div>
+      <div class="media-stage">
+        <img class="certificate-full-image" id="certificateFullImage" src="" alt="Certificate">
+      </div>
+      <div class="certificate-modal-info">
+        <div class="certificate-modal-name" id="certificateModalTitle">Certificate Name</div>
+        <div class="certificate-modal-year" id="certificateModalYear">2026</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner"><span>EK / Egarda Kurniawan</span><span>System Status : Online</span><span>© 2026</span>
+    </div>
+  </footer>
+
+  <script>
+    const links = [...document.querySelectorAll('.nav-link')];
+    const sections = links
+      .map(link => document.querySelector(link.getAttribute('href')))
+      .filter(Boolean);
+
+    /* =========================
+       ACTIVE NAVIGATION
+       ========================= */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          links.forEach(link => link.classList.remove('active'));
+
+          const active = links.find(
+            link => link.getAttribute('href') === '#' + entry.target.id
+          );
+
+          if (active) active.classList.add('active');
+        }
+      });
+    }, {
+      rootMargin: '-35% 0px -55% 0px',
+      threshold: 0
+    });
+
+    sections.forEach(section => observer.observe(section));
+
+
+    /* =========================
+       HELPERS
+       ========================= */
+    function openModal(modal) {
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modal) {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+
+      const video = modal.querySelector('video');
+      if (video) {
+        video.pause();
+        video.removeAttribute('src');
+        video.load();
+      }
+
+      if (!document.querySelector('.media-modal.is-open, .certificate-modal.is-open')) {
+        document.body.style.overflow = '';
+      }
+    }
+
+    document.querySelectorAll('[data-close-modal]').forEach(button => {
+      button.addEventListener('click', () => {
+        const modal = document.getElementById(button.dataset.closeModal);
+        if (modal) closeModal(modal);
+      });
+    });
+
+    document.querySelectorAll('.media-modal, .certificate-modal').forEach(modal => {
+      modal.addEventListener('click', event => {
+        if (event.target === modal) closeModal(modal);
+      });
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        document.querySelectorAll('.media-modal.is-open, .certificate-modal.is-open')
+          .forEach(closeModal);
+      }
+    });
+
+
+    /* =========================
+      PROJECT MEDIA
+
+      Replace the src paths below with your files.
+      Supported types: image / video
+       ========================= */
+    const projectMedia = {
+      '01': [
+        { type: 'image', src: 'assets/projects/goodhealth/41.png', label: 'Register interface' },
+        { type: 'image', src: 'assets/projects/goodhealth/42.png', label: 'Login process' },
+        { type: 'image', src: 'assets/projects/goodhealth/43.png', label: 'Demo booking' },
+        { type: 'image', src: 'assets/projects/goodhealth/44.png', label: 'Online order feature' }
+      ],
+      '02': [
+        { type: 'video', src: 'assets/projects/conflux/31.mp4', label: 'Application demonstration' },
+        { type: 'image', src: 'assets/projects/conflux/32.jpeg', label: 'Registration interface' },
+        { type: 'image', src: 'assets/projects/conflux/33.jpeg', label: 'Home screen' },
+        { type: 'image', src: 'assets/projects/conflux/34.jpeg', label: 'Login interface' },
+        { type: 'image', src: 'assets/projects/conflux/35.jpeg', label: 'Task management page' },
+        { type: 'image', src: 'assets/projects/conflux/36.jpeg', label: 'Home feature showcase' },
+        { type: 'image', src: 'assets/projects/conflux/37.jpeg', label: 'Task list and adding tasks' },
+        { type: 'image', src: 'assets/projects/conflux/38.jpeg', label: 'Study hub' },
+        { type: 'image', src: 'assets/projects/conflux/39.jpeg', label: 'Materials management' },
+        { type: 'image', src: 'assets/projects/conflux/310.jpeg', label: 'Focus timer' },
+        { type: 'image', src: 'assets/projects/conflux/311.jpeg', label: 'Profile page' },
+        { type: 'image', src: 'assets/projects/conflux/312.jpeg', label: 'Learning materials page' }
+      ],
+      '03': [
+        { type: 'video', src: 'assets/projects/curiosity/11.mp4', label: 'Application demonstration' },
+        { type: 'image', src: 'assets/projects/curiosity/12.jpeg', label: 'Home screen' },
+        { type: 'image', src: 'assets/projects/curiosity/13.jpeg', label: 'Article screen' }
+      ],
+      '04': [
+        { type: 'image', src: 'assets/projects/kerjain/21.png', label: 'Main interface & add list' },
+        { type: 'image', src: 'assets/projects/kerjain/22.png', label: 'List showcase' },
+        { type: 'image', src: 'assets/projects/kerjain/23.png', label: 'Check & uncheck tasks' },
+        { type: 'image', src: 'assets/projects/kerjain/24.png', label: 'Task deletion' }
+      ],
+      '05': [
+        { type: 'image', src: 'assets/projects/otak-atik/51.jpeg', label: 'App brochure' }
+      ],
+      '06': [],
+      '07': [],
+      '08': [],
+      '09': []
+    };
+
+    const mediaModal = document.getElementById('mediaModal');
+    const mediaStage = document.getElementById('mediaStage');
+    const mediaTitle = document.getElementById('mediaTitle');
+    const mediaCounter = document.getElementById('mediaCounter');
+    const mediaHint = document.getElementById('mediaHint');
+
+    let activeProjectMedia = [];
+    let activeMediaIndex = 0;
+
+    function showMedia(index) {
+      if (!activeProjectMedia.length) {
+        mediaStage.innerHTML = `
+          <div class="media-empty">
+            <strong>MEDIA NOT AVAILABLE</strong>
+            Add images or videos to the project's media array in the script section.
+          </div>`;
+        mediaCounter.textContent = '00 / 00';
+        return;
+      }
+
+      activeMediaIndex = (index + activeProjectMedia.length) % activeProjectMedia.length;
+      const item = activeProjectMedia[activeMediaIndex];
+      mediaStage.innerHTML = '';
+
+      if (item.type === 'video') {
+        const video = document.createElement('video');
+        video.src = item.src;
+        video.controls = true;
+        video.playsInline = true;
+        video.preload = 'metadata';
+        video.addEventListener('error', () => showMediaError(item.src));
+        mediaStage.appendChild(video);
+      } else {
+        const image = document.createElement('img');
+        image.src = item.src;
+        image.alt = item.label || 'Project media';
+        image.addEventListener('error', () => showMediaError(item.src));
+        mediaStage.appendChild(image);
+      }
+
+      mediaCounter.textContent = `${String(activeMediaIndex + 1).padStart(2, '0')} / ${String(activeProjectMedia.length).padStart(2, '0')}`;
+      mediaHint.textContent = `${item.label || 'MEDIA'} • CLICK LEFT / RIGHT SIDE TO NAVIGATE`;
+    }
+
+    function showMediaError(path) {
+      mediaStage.innerHTML = `
+        <div class="media-empty">
+          <strong>FILE NOT FOUND</strong>
+          ${path}
+        </div>`;
+    }
+
+    document.querySelectorAll('.project-media-trigger').forEach(button => {
+      button.addEventListener('click', () => {
+        const projectId = button.dataset.projectId;
+        const project = button.closest('.project');
+        const title = project?.querySelector('.project-title')?.textContent?.trim() || 'PROJECT MEDIA';
+
+        activeProjectMedia = projectMedia[projectId] || [];
+        activeMediaIndex = 0;
+        mediaTitle.textContent = `${projectId} / ${title}`;
+        openModal(mediaModal);
+        showMedia(0);
+      });
+    });
+
+    document.querySelector('[data-media-prev]').addEventListener('click', () => {
+      showMedia(activeMediaIndex - 1);
+    });
+
+    document.querySelector('[data-media-next]').addEventListener('click', () => {
+      showMedia(activeMediaIndex + 1);
+    });
+
+
+    /* =========================
+      CERTIFICATE CAROUSEL
+       ========================= */
+    const certificateCards = [...document.querySelectorAll('.certificate-card')];
+    const certificateCounter = document.querySelector('.stat:nth-child(2) .stat-value');
+    const certificateModal = document.getElementById('certificateModal');
+    const certificateFullImage = document.getElementById('certificateFullImage');
+    const certificateModalTitle = document.getElementById('certificateModalTitle');
+    const certificateModalYear = document.getElementById('certificateModalYear');
+
+    function updateCertificateCard(card) {
+      const filled = card.dataset.filled === 'true';
+      const preview = card.querySelector('.certificate-preview');
+      const name = card.querySelector('.certificate-name');
+      const year = card.querySelector('.certificate-year');
+
+      if (preview) {
+        preview.src = card.dataset.preview || card.dataset.image;
+        preview.alt = `${card.dataset.name || 'Certificate'} preview`;
+        preview.addEventListener('error', () => {
+          preview.style.display = 'none';
+        }, { once: true });
+      }
+
+      if (name) name.textContent = card.dataset.name || 'Certificate Name';
+      if (year) year.textContent = card.dataset.year || 'YEAR';
+
+      card.classList.toggle('is-empty', !filled);
+    }
+
+    certificateCards.forEach(updateCertificateCard);
+
+    const certificateCount = certificateCards.filter(card => card.dataset.filled === 'true').length;
+    if (certificateCounter) {
+      certificateCounter.textContent = String(certificateCount).padStart(2, '0');
+    }
+
+    certificateCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const empty = certificateModal.querySelector('.certificate-empty-message');
+        if (empty) empty.remove();
+
+        if (card.dataset.filled !== 'true') {
+          certificateFullImage.removeAttribute('src');
+          certificateFullImage.alt = 'Certificate pending';
+          certificateFullImage.style.display = 'none';
+
+          const message = document.createElement('div');
+          message.className = 'media-empty certificate-empty-message';
+          message.style.minHeight = '45vh';
+          message.style.display = 'grid';
+          message.style.placeItems = 'center';
+          message.innerHTML = '<div><strong>DATA PENDING</strong>Add your certificate image, name, year, and set data-filled="true".</div>';
+          certificateModal.querySelector('.media-stage').appendChild(message);
+        } else {
+          certificateFullImage.src = card.dataset.image;
+          certificateFullImage.alt = card.dataset.name || 'Certificate';
+          certificateFullImage.style.display = 'block';
+        }
+
+        certificateModalTitle.textContent = card.dataset.name || 'Certificate';
+        certificateModalYear.textContent = card.dataset.year || 'YEAR';
+        openModal(certificateModal);
+      });
+    });
+
+    /* Keyboard navigation for project media. */
+    document.addEventListener('keydown', event => {
+      if (!mediaModal.classList.contains('is-open')) return;
+      if (event.key === 'ArrowLeft') showMedia(activeMediaIndex - 1);
+      if (event.key === 'ArrowRight') showMedia(activeMediaIndex + 1);
+    });
+  </script>
+</body>
+
+</html>
